@@ -1,1 +1,24 @@
-<p>userlist works!</p>
+<div class="container">
+    <!-- <app-search (searchEmit)="search($event)"></app-search> -->
+    <div class="row gap-3" >
+      @for (user of arrUsers; track user._id) {
+        <div class="d-flex col-12 col-md-4 col-lg-3 border border-1 border-black">
+        <app-usercard [myUser]="user"></app-usercard>
+        </div>
+      } @empty {
+        <article>
+          <h3>No se ha encontrado ningún usuario</h3>
+        </article>
+      }
+    </div>
+    <div class="d-flex gap-3 justify-content-center my-3">
+      <button class="btn btn-primary"  (click)="changePage('previous')"><i class="fa-solid fa-arrow-left"></i>Anterior</button>
+      <button class="btn btn-primary" (click)="drawUsers(1)">1</button>
+      <button class="btn btn-primary" (click)="drawUsers(2)">2</button>
+      <button class="btn btn-primary" (click)="changePage('next')">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  
+    
+  </div>
+
+

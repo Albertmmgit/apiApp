@@ -1,1 +1,97 @@
-<p>userform works!</p>
+<section class="container mt-3">
+    <div class="card shadow p-5">
+      <h3>{{ tipo }} USUARIO</h3>
+      <hr />
+      <form [formGroup]="usersForm" (ngSubmit)="getDataForm()">
+        <div class="my-3">
+          <label class="form-label" for="first_name">Nombre usuario</label>
+          <input
+            class="form-control"
+            type="text"
+            id="first_name"
+            formControlName="first_name"
+            placeholder="Introduza nombre de usuario"
+          />
+          @if(controlForm('first_name', 'required')) {
+            <p class="error ms-1">Campo requerido</p>
+          }
+          @if(controlForm('first_name', 'minlength')) {
+            <p class="error ms-1">Introduce un nombre valido</p>
+          }
+        </div>
+  
+        <div class="my-3">
+          <label class="form-label" for="last_name">Apellido usuario</label>
+          <input
+            class="form-control"
+            type="text"
+            id="last_name"
+            formControlName="last_name"
+            placeholder="Introduzca apellidos de usuario"
+          />
+          @if(controlForm('last_name', 'required')) {
+            <p class="error ms-1">Campo requerido</p>
+          }
+          @if(controlForm('last_name', 'minlength')) {
+            <p class="error ms-1">Introduce un apellido valido</p>
+          }
+        </div>
+
+        <div class="my-3">
+          <label class="form-label" for="email">Email usuario</label>
+          <input
+            class="form-control"
+            type="text"
+            id="email"
+            formControlName="email"
+            placeholder="Introduzca email de usuario"
+          />
+          @if(controlForm('email', 'required')) {
+            <p class="error ms-1">Campo requerido</p>
+          }
+          @if(controlForm('email', 'pattern')) {
+            <p class="error ms-1">Introduce un email valido</p>
+          }
+        </div>
+  
+        <div class="my-3">
+          <label class="form-label" for="image">Imagen de usuario</label>
+          <input
+            class="form-control"
+            type="text"
+            id="image"
+            formControlName="image"
+            placeholder="Introduzca url de la foto del usuario"
+          />
+          @if(controlForm('image', 'required')) {
+            <p class="error ms-1">Campo requerido</p>
+          }
+          @if(controlForm('image', 'pattern')) {
+            <p class="error ms-1">Introduce una url valida</p>
+          }
+        </div>
+
+        <div class="my-3">
+          <label class="form-label" for="Password">password</label>
+          <input
+            class="form-control"
+            type="password"
+            id="Password"
+            formControlName="Password"
+            placeholder="Introduzca apellidos de usuario"
+          />
+          @if(controlForm('Password', 'required')) {
+            <p class="error ms-1">Campo requerido</p>
+          }
+          @if(controlForm('Password', 'minlength')) {
+            <p class="error ms-1">Introduce un password</p>
+          }
+        </div>
+  
+        <div>
+          <input class="btn btn-outline-secondary" type="submit" [disabled]="usersForm.invalid" [value]="tipoBtn" />
+        </div>
+      </form>
+    </div>
+  </section>
+  
