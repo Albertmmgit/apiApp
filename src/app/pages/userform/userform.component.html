@@ -1,6 +1,6 @@
 <section class="container mt-3">
     <div class="card shadow p-5">
-      <h3>{{ tipo }} USUARIO</h3>
+      <h3>{{ type }} USUARIO</h3>
       <hr />
       <form [formGroup]="usersForm" (ngSubmit)="getDataForm()">
         <div class="my-3">
@@ -70,26 +70,9 @@
             <p class="error ms-1">Introduce una url valida</p>
           }
         </div>
-
-        <div class="my-3">
-          <label class="form-label" for="Password">password</label>
-          <input
-            class="form-control"
-            type="password"
-            id="Password"
-            formControlName="Password"
-            placeholder="Introduzca apellidos de usuario"
-          />
-          @if(controlForm('Password', 'required')) {
-            <p class="error ms-1">Campo requerido</p>
-          }
-          @if(controlForm('Password', 'minlength')) {
-            <p class="error ms-1">Introduce un password</p>
-          }
-        </div>
   
         <div>
-          <input class="btn btn-outline-secondary" type="submit" [disabled]="usersForm.invalid" [value]="tipoBtn" />
+          <input class="btn btn-outline-secondary" type="submit" [disabled]="usersForm.invalid" [value]="typeBtn" />
         </div>
       </form>
     </div>

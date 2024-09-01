@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { UsercardComponent } from '../../components/usercard/usercard.component';
 import { UsersService } from '../../services/users.service';
 import { Iuser } from '../../interfaces/iuser.interface';
@@ -11,12 +11,12 @@ import { Iuser } from '../../interfaces/iuser.interface';
   styleUrl: './userlist.component.css'
 })
 export class UserlistComponent {
+
   usersServices = inject(UsersService)
   arrUsers: Iuser[] = []
   user: Iuser | null = null
   page: number = 1
   totalPages: number = 2
-
 
   ngOnInit() {
     this.drawUsers()
@@ -39,6 +39,5 @@ export class UserlistComponent {
       this.page--;
     }
     this.drawUsers();
-    console.log(this.page)
   }
 }

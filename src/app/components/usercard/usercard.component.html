@@ -1,28 +1,28 @@
 
    
-      <div class="row align-items-center d-flex flex-md-column">
+      <div class="row align-items-center d-flex flex-md-column h-100">
         <div class="text-center col-4 col-md-12">
 
             <img
               src="{{ myUser.image }}"
-              class="img rounded-circle img-fluid p-3 px-md-4"
+              class="w-75 rounded-circle img-fluid p-1 pt-lg-3"
               alt="Card 1"
             />
           </div>
           <div class="col-4 col-md-12">
             
-            <p class=" text-center mt-2 font">
+            <p class="text-center text-nowrap overflow-hidden text-truncate">
               {{ myUser.first_name }} {{ myUser.last_name }}
             </p>
 
         </div>
-        <div class="col-4 col-md-12 d-flex gap-3 mt-3 justify-content-center">
+        <div class="col-4 col-md-12 d-flex gap-3 justify-content-center p-0 align-items-end mt-auto">
            
           <a
             class="text-decoration-none text-center"
             [routerLink]="['/home', 'usuario', myUser._id]"
             ><i class="fa-solid fa-magnifying-glass fa-2x text-bg-light"></i>
-            <p class="text-bg-light">Ver Detalle</p></a
+            <p class="text-bg-light fs-6">Ver Detalle</p></a
           >
        
         
@@ -30,7 +30,7 @@
             class="text-decoration-none text-center d-none d-md-block"
             [routerLink]="['/home', 'actualizar-usuario', myUser._id]"
             ><i class="fa-solid fa-arrows-rotate fa-2x text-bg-light"></i>
-            <p class="text-bg-light">Actualizar</p></a
+            <p class="text-bg-light fs-6">Actualizar</p></a
           >
         
       
@@ -38,7 +38,7 @@
             class="text-decoration-none text-center d-none d-md-block"
             (click)="delete(myUser._id, myUser.first_name)"
             ><i class="fa-solid fa-trash-can fa-2x text-bg-light"></i>
-            <p class="text-bg-light">Borrar</p></a
+            <p class="text-bg-light fs-6">Borrar</p></a
           >
        
       </div>

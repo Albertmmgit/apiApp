@@ -18,8 +18,8 @@ export class UserformComponent {
   userService = inject(UsersService)
   router = inject(Router)
   activatedRoute = inject(ActivatedRoute)
-  tipo: string = "NUEVO"
-  tipoBtn: String = "Guardar Usuario"
+  type: string = "NUEVO"
+  typeBtn: String = "Guardar Usuario"
   errorForm: any[] = []
 
   constructor() {
@@ -39,16 +39,15 @@ export class UserformComponent {
       image: new FormControl(null, [
         Validators.required,
         Validators.pattern(/^(https?:\/\/)?([a-zA-Z0-9.-]+)(\.[a-zA-Z]{2,})(:[0-9]{1,5})?(\/[a-zA-Z0-9._~:/?#[\]@!$&'()*+,;=-]*)?\/?$/)
-      ]),
-      Password: new FormControl(null, [])
+      ])
     })
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe( async (params: any) => {
       if (params._id) {
-        this.tipo = "ACTUALIZAR"
-        this.tipoBtn = "Actualizar Usuario"
+        this.type = "ACTUALIZAR"
+        this.typeBtn = "Actualizar Usuario"
         const user: Iuser = await this.userService.getById(params._id)
         this.usersForm = new FormGroup ({
           _id: new FormControl(user._id, []),
@@ -61,14 +60,11 @@ export class UserformComponent {
     })
   }
 
-
-
   controlForm (formControlName: string, validator: string) {
     return this.usersForm.get(formControlName)?.hasError(validator) && this.usersForm.get(formControlName)?.touched
   }
 
   async getDataForm() {
-
     if (this.usersForm.value._id) {
       try {
         const response: Iuser = await this.userService.update(this.usersForm.value)
@@ -81,22 +77,16 @@ export class UserformComponent {
             timer: 1500,
             imageWidth: 100, 
             imageHeight: 100,
-            width: "350px",
-
+            width: "300px",
           });
-   
-            this.router.navigate(['/home', 'usuario', response._id])
-
-          
+            this.router.navigate(['/home', 'usuario', response._id])   
         }
       } catch ({error}: any) {
-        this.errorForm = error
-  
+        this.errorForm = error 
       }
     } else {
       try {
         const response: IusersList = await this.userService.insert(this.usersForm.value)
-        console.log(response)
         if(response) {
           Swal.fire({
             position: "center",
@@ -106,20 +96,13 @@ export class UserformComponent {
             timer: 1500,
             imageWidth: 100, 
             imageHeight: 100,
-            width: "350px",
-
-          });
-          
+            width: "300px",
+          });        
           this.router.navigate(['/home', 'usuarios'])
         }
       } catch ({error}: any) {
-        console.log(error)
         this.errorForm = error
-        console.log(this.errorForm)
       }
-
     }
-
   }
-
 }
