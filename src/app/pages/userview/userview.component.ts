@@ -21,7 +21,11 @@ export class UserviewComponent {
       let id = (params._id)
       this.user = await this.userServices.getById(id)
     })
+
   }
+
+  // imagino que debe haber una forma que no tener que duplicar la función delete en los dos componentes, pero no lo he encontrado, tampoco he sabido encajarla en el servicio para llamarla desde allí.
+
 
   delete(id: string | undefined) {
     if (id) {
