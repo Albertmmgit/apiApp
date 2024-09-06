@@ -72,6 +72,7 @@
         </div>
   
         <div>
+          <!-- En el formulario he deshabilitado el botón si el formulario es invalido ya que la respuesta de la API en el network del inspeccionador siempre era OK aunque el formulario se enviara sin alguno de los datos y no he averiguado porque -->
           <input class="btn btn-outline-secondary" type="submit" [disabled]="usersForm.invalid" [value]="typeBtn" />
         </div>
       </form>

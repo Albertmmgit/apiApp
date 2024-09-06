@@ -51,10 +51,22 @@ export class UserformComponent {
         const user: Iuser = await this.userService.getById(params._id)
         this.usersForm = new FormGroup ({
           _id: new FormControl(user._id, []),
-          first_name: new FormControl(user.first_name, []),
-          last_name: new FormControl(user.last_name, []),
-          email: new FormControl(user.email, []),
-          image: new FormControl(user.image, []),
+          first_name: new FormControl(user.first_name, [
+            Validators.required,
+            Validators.minLength(2)
+          ]),
+          last_name: new FormControl(user.last_name, [
+            Validators.required,
+            Validators.minLength(3)
+          ]),
+          email: new FormControl(user.email, [
+            Validators.required,
+            Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+          ]),
+          image: new FormControl(user.image, [
+            Validators.required,
+            Validators.pattern(/^(https?:\/\/)?([a-zA-Z0-9.-]+)(\.[a-zA-Z]{2,})(:[0-9]{1,5})?(\/[a-zA-Z0-9._~:/?#[\]@!$&'()*+,;=-]*)?\/?$/)
+          ])
         })
       }
     })

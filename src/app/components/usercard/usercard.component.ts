@@ -33,7 +33,6 @@ export class UsercardComponent {
           try {
             const response: Iuser = await this.userService.delete(id)
             if (response._id) {
-              //const response = await this.studentsServices.getAll()
               Swal.fire({
                 position: "center",
                 icon: "success",

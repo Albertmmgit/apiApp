@@ -15,25 +15,20 @@ export class UserlistComponent {
 
   usersServices = inject(UsersService)
   arrUsers: Iuser[] = []
-  // user: Iuser | null = null
   page: number = 1
   totalPages!: number
-  arr: any = []
   totalUsers: Iuser[] = []
   InputTouch: boolean = false
 
   ngOnInit() {
     this.drawUsers(this.page)
     this.getTotalPages()
-    console.log("hola")
-    console.log(this.page)
   }
 
 async getTotalPages() {
   try {
     const response = await this.usersServices.getPages()
     this.totalPages = response.total_pages
-    console.log(this.totalPages)
   } catch (error) {
   }
 }
@@ -46,7 +41,6 @@ async getTotalPages() {
     } catch (error) {
     }
     this.page = page
-    console.log(this.page)
   }
 
   changePage(direction: 'next' | 'previous') {
@@ -58,22 +52,22 @@ async getTotalPages() {
     this.drawUsers(this.page);
   }
 
-  // Al hacer esta funcion me encontre el problema que solo podía buscar usuarios de una misma página y que tenia problemas con los accentos. El primero lo resolvi generando un array con todos los usuarios, el segundo fue gracias a internet ya que desconozco el metodo normalize.
+  // Para estos casos de busqueda encontre en internet este método .normalize("NFD").replace(/[\u0300-\u036f]/g, "") para eliminar los accentos de los datos del array. Desde un punto de vista profesional es mejor permitir la busqueda con accentos o sin?
 
   async search(event: string) {
+    console.log(event)
     if (!this.InputTouch) {
       this.InputTouch = true
       try {
         for (let i = 1; i <= this.totalPages; i++) {
-          const arr = await this.usersServices.getAll(i)
-          const nose = arr.results
-          console.log(nose)
-          this.totalUsers = this.totalUsers.concat(nose)
+          const array = await this.usersServices.getAll(i)
+          const users = array.results
+          this.totalUsers = this.totalUsers.concat(users)
         }
       } catch (error) {
       }
     }
-    this.arrUsers = this.totalUsers.filter(user => user.first_name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(event.toLowerCase()) )
+    this.arrUsers = this.totalUsers.filter(user => user.first_name.toLowerCase().includes(event.toLowerCase()) )
     if (event == "") {
       this.drawUsers(this.page)
     }
